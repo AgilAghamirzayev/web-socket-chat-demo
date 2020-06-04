@@ -6,6 +6,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 /**
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Controller;
  * */
 
 @Controller
+@RequestMapping("/login")
 public class ChatController {
 
     @MessageMapping("/chat.sendMessage")
@@ -25,7 +27,7 @@ public class ChatController {
         return message;
     }
 
-    @MessageMapping("/chat.addUser")
+        @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
     public ChatMessage addUser(@Payload ChatMessage message, SimpMessageHeaderAccessor headerAccessor){
         // Add username in web socket session
